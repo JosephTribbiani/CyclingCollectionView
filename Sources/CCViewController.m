@@ -7,8 +7,13 @@
 //
 
 #import "CCViewController.h"
+#import "CCCollectionViewCell.h"
 
-@interface CCViewController ()
+NSString* const kCCCollectionCellIdentifier = @"CollectionCell";
+
+@interface CCViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -17,13 +22,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
+    layout.itemSize = CGSizeMake(145, 192);
+	layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+	layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+	[self.collectionView setCollectionViewLayout:layout animated:YES];
+    
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UICollectionViewDatasource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CCCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:kCCCollectionCellIdentifier forIndexPath:indexPath];
+    [cell.label setText:[NSString stringWithFormat:@"%d",indexPath.row]];
+    return cell;
 }
 
 @end
