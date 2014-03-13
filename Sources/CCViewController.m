@@ -46,12 +46,12 @@ NSString* const kCCCollectionCellIdentifier = @"CollectionCell";
 
 #pragma mark - UICollectionViewDatasource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.dataSource count] * 2;
 }
@@ -82,7 +82,7 @@ NSString* const kCCCollectionCellIdentifier = @"CollectionCell";
 
 #pragma mark - ScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
     NSInteger itemsCount = self.dataSource.count * 2;
     
